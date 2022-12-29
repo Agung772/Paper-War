@@ -10,10 +10,16 @@ public class PlayerController : MonoBehaviour
     }
 
     public Mode modePlayer;
-    public new Rigidbody rigidbody;
+    public CharacterController characterController;
+    public GroundCheck groundCheck;
+
     public float speedPlayer;
-    public float jumpForce;
+    public float jumpForce, gravity = -9.81f;
+
+
     public Vector3 movement;
+    public float horizontalInput, verticalInput, directionY;
+
     void Update()
     {
         if (modePlayer == Mode.pesawat)
@@ -21,55 +27,39 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        //MovePlayer();
+        MovePlayer();
         JumpPlayer(false);
 
-        
-        if (Input.GetAxis("Vertical") > 0) MovePlayerVelocity("W");
-        if (Input.GetAxis("Vertical") < 0) MovePlayerVelocity("S");
-        if (Input.GetAxis("Horizontal") > 0) MovePlayerVelocity("D");
-        if (Input.GetAxis("Horizontal") < 0) MovePlayerVelocity("A");
-        
+
     }
 
-    void MovePlayerVelocity(string input)
-    {
-        if (input == "W")
-        {
-            rigidbody.AddForce(transform.forward * speedPlayer);
-        }
-        if (input == "A")
-        {
-            rigidbody.AddForce(-transform.right * speedPlayer);
-        }
-        if (input == "S")
-        {
-            rigidbody.AddForce(-transform.forward * speedPlayer);
-        }
-        if (input == "D")
-        {
-            rigidbody.AddForce(transform.right * speedPlayer);
-        }
-    }
     void MovePlayer()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.z = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
 
-        rigidbody.MovePosition(rigidbody.position + movement * speedPlayer * Time.fixedDeltaTime);
+        movement = new Vector3(horizontalInput, 0, verticalInput);
+
+        directionY += gravity * Time.deltaTime;
+        movement.y = directionY;
+        if (groundCheck.ground) directionY = 0;
+
+
+        characterController.Move(movement * speedPlayer * Time.deltaTime);
     }
 
     void JumpPlayer(bool android)
     {
         if (android)
         {
-            rigidbody.AddForce(transform.up * jumpForce);
+
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                rigidbody.velocity = Vector3.up * jumpForce;
+                directionY = jumpForce;
+                groundCheck.ground = false;
             }
         }
     }

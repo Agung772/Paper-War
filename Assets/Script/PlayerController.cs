@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController characterController;
     public GroundCheck groundCheck;
 
-    public float speedPlayer;
+    public float speedVerticalPlayer, speedHorizontalPlayer;
     public float jumpForce, gravity = -9.81f;
 
 
@@ -38,14 +38,14 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        movement = new Vector3(horizontalInput, 0, verticalInput);
+        movement = new Vector3(speedHorizontalPlayer, 0, verticalInput);
 
         directionY += gravity * Time.deltaTime;
         movement.y = directionY;
         if (groundCheck.ground) directionY = 0;
 
 
-        characterController.Move(movement * speedPlayer * Time.deltaTime);
+        characterController.Move(movement * speedVerticalPlayer * Time.deltaTime);
     }
 
     void JumpPlayer(bool android)

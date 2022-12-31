@@ -6,13 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     public enum Mode
     {
-        pesawat, kapal
+        pesawat, kapal, tamia
     }
 
     public Mode modePlayer;
     public CharacterController characterController;
     public GroundCheck groundCheck;
+    public GameObject pesawat, kapal, tamia;
 
+    public float speedPesawat, speedKapal, speedTamia;
     public float speedVerticalPlayer, speedHorizontalPlayer;
     public float jumpForce, gravity = -9.81f;
 
@@ -22,16 +24,48 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        ChangeMode();
+    }
+
+    void ChangeMode()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) modePlayer = Mode.pesawat;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) modePlayer = Mode.kapal;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) modePlayer = Mode.tamia;
+
         if (modePlayer == Mode.pesawat)
         {
+            pesawat.SetActive(true);
+            kapal.SetActive(false);
+            tamia.SetActive(false);
 
+
+            speedHorizontalPlayer = speedPesawat;
+            MovePlayer();
+            JumpPlayer(false);
         }
+        else if (modePlayer == Mode.kapal)
+        {
+            pesawat.SetActive(false);
+            kapal.SetActive(true);
+            tamia.SetActive(false);
 
-        MovePlayer();
-        JumpPlayer(false);
+
+            speedHorizontalPlayer = speedKapal;
+            MovePlayer();
+        }
+        else if (modePlayer == Mode.tamia)
+        {
+            pesawat.SetActive(false);
+            kapal.SetActive(false);
+            tamia.SetActive(true);
 
 
+            speedHorizontalPlayer = speedTamia;
+            MovePlayer();
+        }
     }
+
 
     void MovePlayer()
     {

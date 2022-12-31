@@ -29,7 +29,13 @@ public class PlayerController : MonoBehaviour
 
     void ChangeMode()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) modePlayer = Mode.pesawat;
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            modePlayer = Mode.pesawat;
+            directionY = jumpForce + 1;
+            groundCheck.groundDarat = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha2)) modePlayer = Mode.kapal;
         if (Input.GetKeyDown(KeyCode.Alpha3)) modePlayer = Mode.tamia;
 
@@ -39,10 +45,17 @@ public class PlayerController : MonoBehaviour
             kapal.SetActive(false);
             tamia.SetActive(false);
 
-
-            speedHorizontalPlayer = speedPesawat;
             MovePlayer();
             JumpPlayer(false);
+
+            if (!groundCheck.groundDarat && !groundCheck.groundAir)
+            {
+                speedHorizontalPlayer = speedPesawat;
+            }
+            else
+            {
+                speedHorizontalPlayer = 0;
+            }
         }
         else if (modePlayer == Mode.kapal)
         {
@@ -50,9 +63,16 @@ public class PlayerController : MonoBehaviour
             kapal.SetActive(true);
             tamia.SetActive(false);
 
-
-            speedHorizontalPlayer = speedKapal;
             MovePlayer();
+
+            if (!groundCheck.groundDarat)
+            {
+                speedHorizontalPlayer = speedKapal;
+            }
+            else
+            {
+                speedHorizontalPlayer = 0;
+            }
         }
         else if (modePlayer == Mode.tamia)
         {
@@ -60,9 +80,16 @@ public class PlayerController : MonoBehaviour
             kapal.SetActive(false);
             tamia.SetActive(true);
 
-
-            speedHorizontalPlayer = speedTamia;
             MovePlayer();
+
+            if (!groundCheck.groundAir)
+            {
+                speedHorizontalPlayer = speedTamia;
+            }
+            else
+            {
+                speedHorizontalPlayer = 0;
+            }
         }
     }
 
@@ -76,7 +103,7 @@ public class PlayerController : MonoBehaviour
 
         directionY += gravity * Time.deltaTime;
         movement.y = directionY;
-        if (groundCheck.ground) directionY = 0;
+        if (groundCheck.groundDarat || groundCheck.groundAir) directionY = 0;
 
 
         characterController.Move(movement * speedVerticalPlayer * Time.deltaTime);
@@ -93,7 +120,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 directionY = jumpForce;
-                groundCheck.ground = false;
+                groundCheck.groundDarat = false;
             }
         }
     }

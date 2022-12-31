@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    public bool ground;
+    public bool groundDarat, groundAir;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ground"))
+        if (other.CompareTag("GroundDarat"))
         {
-            ground = true;
+            groundDarat = true;
+        }
+        if (other.CompareTag("GroundAir"))
+        {
+            groundAir = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Ground"))
+        if (other.CompareTag("GroundDarat"))
         {
-            ground = false;
+            groundDarat = false;
+        }
+        if (other.CompareTag("GroundAir"))
+        {
+            groundAir = false;
         }
     }
 }

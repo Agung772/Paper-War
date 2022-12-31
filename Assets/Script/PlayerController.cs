@@ -29,13 +29,7 @@ public class PlayerController : MonoBehaviour
 
     void ChangeMode()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            modePlayer = Mode.pesawat;
-            directionY = jumpForce + 1;
-            groundCheck.groundDarat = false;
-        }
-
+        if (Input.GetKeyDown(KeyCode.Alpha1)) modePlayer = Mode.pesawat;
         if (Input.GetKeyDown(KeyCode.Alpha2)) modePlayer = Mode.kapal;
         if (Input.GetKeyDown(KeyCode.Alpha3)) modePlayer = Mode.tamia;
 
@@ -121,6 +115,7 @@ public class PlayerController : MonoBehaviour
             {
                 directionY = jumpForce;
                 groundCheck.groundDarat = false;
+                groundCheck.groundAir = false;
             }
         }
     }

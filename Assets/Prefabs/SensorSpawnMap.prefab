@@ -43,7 +43,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.05, y: 5, z: 1}
+  m_Size: {x: 1, y: 50, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5570162129142276048
 MonoBehaviour:
@@ -57,6 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9e016af45d4134382fca348d558281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maps:
-  - {fileID: 12331378431617877, guid: 0b942f00e9db36d4f8345e8c59872a0b, type: 3}
-  - {fileID: 1749091544543013505, guid: 197f6a7247d647f4cbc71a59859b5b4d, type: 3}
+  mapManager: {fileID: 0}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerRigibody : MonoBehaviour
 {
     public enum Mode
     {
@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public Mode modePlayer;
-    public CharacterController characterController;
+    public new Rigidbody rigidbody;
     public GroundCheck groundCheck;
     public GameObject pesawat, kapal, tamia;
 
@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ChangeMode();
-        BatasPlayer();
     }
 
     void ChangeMode()
@@ -88,29 +87,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void BatasPlayer()
-    {
-        if (transform.position.z < -3.5f)
-            transform.position = new Vector3(transform.position.x, transform.position.y, -3.5f);
-        if (transform.position.z > 3.5f)
-            transform.position = new Vector3(transform.position.x, transform.position.y, 3.5f);
-        if (transform.position.y > 15)
-            transform.position = new Vector3(transform.position.x, 15, transform.position.z);
-    }
 
     void MovePlayer()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        movement = new Vector3(speedHorizontalPlayer, 0, verticalInput);
-
-        directionY += gravity * Time.deltaTime;
-        movement.y = directionY;
-        if (groundCheck.groundDarat || groundCheck.groundAir) directionY = 0;
-
-
-        characterController.Move(movement * speedVerticalPlayer * Time.deltaTime);
+        rigidbody.AddForce(Vector3.forward * verticalInput * 50, ForceMode.Force);
+        rigidbody.AddForce(Vector3.right * 20, ForceMode.Force);
+        
     }
 
     void JumpPlayer(bool android)
@@ -123,9 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                directionY = jumpForce;
-                groundCheck.groundDarat = false;
-                groundCheck.groundAir = false;
+                rigidbody.AddForce(Vector3.up * 10, ForceMode.Impulse);
             }
         }
     }

@@ -11,20 +11,21 @@ public class PlayerControllerRigibody : MonoBehaviour
 
     public Mode modePlayer;
     public new Rigidbody rigidbody;
+
     public GroundCheck groundCheck;
     public GameObject pesawat, kapal, tamia;
 
     public float speedPesawat, speedKapal, speedTamia;
     public float speedVerticalPlayer, speedHorizontalPlayer;
-    public float jumpForce, gravity = -9.81f;
+    public float jumpForce;
 
-
-    public Vector3 movement;
-    public float horizontalInput, verticalInput, directionY;
+    float horizontalInput, verticalInput;
 
     void Update()
     {
         ChangeMode();
+        BatasPlayer();
+        SpeedControl();
     }
 
     void ChangeMode()
@@ -41,6 +42,7 @@ public class PlayerControllerRigibody : MonoBehaviour
 
             MovePlayer();
             JumpPlayer(false);
+
 
             if (!groundCheck.groundDarat && !groundCheck.groundAir)
             {
@@ -59,6 +61,7 @@ public class PlayerControllerRigibody : MonoBehaviour
 
             MovePlayer();
 
+
             if (!groundCheck.groundDarat)
             {
                 speedHorizontalPlayer = speedKapal;
@@ -75,6 +78,7 @@ public class PlayerControllerRigibody : MonoBehaviour
             tamia.SetActive(true);
 
             MovePlayer();
+
 
             if (!groundCheck.groundAir)
             {
@@ -93,8 +97,8 @@ public class PlayerControllerRigibody : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        rigidbody.AddForce(Vector3.forward * verticalInput * 50, ForceMode.Force);
-        rigidbody.AddForce(Vector3.right * 20, ForceMode.Force);
+        rigidbody.AddForce(Vector3.forward * verticalInput * speedHorizontalPlayer, ForceMode.Force);
+        rigidbody.AddForce(Vector3.right * speedVerticalPlayer, ForceMode.Force);
         
     }
 
@@ -110,6 +114,28 @@ public class PlayerControllerRigibody : MonoBehaviour
             {
                 rigidbody.AddForce(Vector3.up * 10, ForceMode.Impulse);
             }
+        }
+    }
+
+    void BatasPlayer()
+    {
+        if (transform.position.z < -3.5f)
+            transform.position = new Vector3(transform.position.x, transform.position.y, -3.5f);
+        if (transform.position.z > 3.5f)
+            transform.position = new Vector3(transform.position.x, transform.position.y, 3.5f);
+        if (transform.position.y > 15)
+            transform.position = new Vector3(transform.position.x, 15, transform.position.z);
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rigidbody.velocity.x, 0f, rigidbody.velocity.z);
+
+        // limit velocity if needed
+        if (flatVel.magnitude > speedHorizontalPlayer)
+        {
+            Vector3 limitedVel = flatVel.normalized * speedHorizontalPlayer;
+            rigidbody.velocity = new Vector3(limitedVel.x, rigidbody.velocity.y, limitedVel.z);
         }
     }
 }

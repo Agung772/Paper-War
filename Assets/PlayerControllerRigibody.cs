@@ -25,7 +25,7 @@ public class PlayerControllerRigibody : MonoBehaviour
     {
         ChangeMode();
         BatasPlayer();
-        SpeedControl();
+
     }
 
     void ChangeMode()

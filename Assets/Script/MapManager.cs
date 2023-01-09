@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    public GameObject enviroment;
     public GameObject[] maps;
-    public float jumlahMap, positionXMap;
+    public float jumlahMap, positionXMap, positionXEnvi;
 }

@@ -24,7 +24,15 @@ public class MapSpawns : MonoBehaviour
             {
                 Destroy(transform.parent.transform.parent.GetChild(0).gameObject);
             }
+            if (mapManager.jumlahMap >= 3)
+            {
 
+                Destroy(transform.parent.transform.parent.GetChild(1).gameObject);
+            }
+
+                GameObject envi = Instantiate(mapManager.enviroment, transform.parent.transform.parent);
+            envi.transform.localPosition = new Vector3(mapManager.positionXEnvi, 0, 0);
+            mapManager.positionXEnvi += 70;
         }
     }
 }

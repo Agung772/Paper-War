@@ -24,15 +24,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        VerticalInput(0);
         ChangeMode();
         BatasPlayer();
     }
 
     void ChangeMode()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) modePlayer = Mode.pesawat;
-        if (Input.GetKeyDown(KeyCode.Alpha2)) modePlayer = Mode.kapal;
-        if (Input.GetKeyDown(KeyCode.Alpha3)) modePlayer = Mode.tamia;
+        ChangeModeInput(0);
 
         if (modePlayer == Mode.pesawat)
         {
@@ -41,7 +40,7 @@ public class PlayerController : MonoBehaviour
             tamia.SetActive(false);
 
             MovePlayer();
-            JumpPlayer(false);
+            JumpPlayerInput(false);
 
             if (!groundCheck.groundDarat && !groundCheck.groundAir)
             {
@@ -88,20 +87,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void BatasPlayer()
-    {
-        if (transform.position.z < -3.5f)
-            transform.position = new Vector3(transform.position.x, transform.position.y, -3.5f);
-        if (transform.position.z > 3.5f)
-            transform.position = new Vector3(transform.position.x, transform.position.y, 3.5f);
-        if (transform.position.y > 15)
-            transform.position = new Vector3(transform.position.x, 15, transform.position.z);
-    }
 
     void MovePlayer()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        //verticalInput = Input.GetAxis("Vertical");
+
 
         movement = new Vector3(speedHorizontalPlayer, 0, verticalInput);
 
@@ -113,11 +104,47 @@ public class PlayerController : MonoBehaviour
         characterController.Move(movement * speedVerticalPlayer * Time.deltaTime);
     }
 
-    void JumpPlayer(bool android)
+    void BatasPlayer()
+    {
+        if (transform.position.z < -3.5f)
+            transform.position = new Vector3(transform.position.x, transform.position.y, -3.5f);
+        if (transform.position.z > 3.5f)
+            transform.position = new Vector3(transform.position.x, transform.position.y, 3.5f);
+        if (transform.position.y > 15)
+            transform.position = new Vector3(transform.position.x, 15, transform.position.z);
+    }
+
+    public void ChangeModeInput(int mode)
+    {
+        if (mode == 1)
+        {
+            modePlayer = Mode.pesawat;
+        }
+        else if (mode == 2)
+        {
+            modePlayer = Mode.kapal;
+        }
+        else if (mode == 3)
+        {
+            modePlayer = Mode.tamia;
+        }
+        else if (mode == 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) modePlayer = Mode.pesawat;
+            if (Input.GetKeyDown(KeyCode.Alpha2)) modePlayer = Mode.kapal;
+            if (Input.GetKeyDown(KeyCode.Alpha3)) modePlayer = Mode.tamia;
+        }
+    }
+    public void JumpPlayerInput(bool android)
     {
         if (android)
         {
-
+            if (modePlayer == Mode.pesawat)
+            {
+                directionY = jumpForce;
+                groundCheck.groundDarat = false;
+                groundCheck.groundAir = false;
+            }
         }
         else
         {
@@ -128,5 +155,14 @@ public class PlayerController : MonoBehaviour
                 groundCheck.groundAir = false;
             }
         }
+    }
+
+    public void VerticalInput(int condition)
+    {
+        if (condition == 0 && Input.GetAxis("Vertical") == 0) verticalInput = 0;
+        else if (condition == 1) verticalInput = -1;
+        else if (condition == 2) verticalInput = 1;
+
+        
     }
 }

@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public CharacterController characterController;
     public GroundCheck groundCheck;
     public GameObject pesawat, kapal, tamia;
+    public ParticleSystem changeModeVfx;
+
 
     public float speedPesawat, speedKapal, speedTamia;
     public float speedVerticalPlayer, speedHorizontalPlayer;
@@ -114,25 +116,47 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 15, transform.position.z);
     }
 
+    int conditionsCM;
     public void ChangeModeInput(int mode)
     {
-        if (mode == 1)
+        if (mode == 1 && conditionsCM != 1)
         {
+            conditionsCM = 1;
             modePlayer = Mode.pesawat;
+            changeModeVfx.Play();
         }
-        else if (mode == 2)
+        else if (mode == 2 && conditionsCM != 2)
         {
+            conditionsCM = 2;
             modePlayer = Mode.kapal;
+            changeModeVfx.Play();
         }
-        else if (mode == 3)
+        else if (mode == 3 && conditionsCM != 3)
         {
+            conditionsCM = 3;
             modePlayer = Mode.tamia;
+            changeModeVfx.Play();
         }
         else if (mode == 0)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) modePlayer = Mode.pesawat;
-            if (Input.GetKeyDown(KeyCode.Alpha2)) modePlayer = Mode.kapal;
-            if (Input.GetKeyDown(KeyCode.Alpha3)) modePlayer = Mode.tamia;
+            if (Input.GetKeyDown(KeyCode.Alpha1) && conditionsCM != 1)
+            {
+                conditionsCM = 1;
+                modePlayer = Mode.pesawat;
+                changeModeVfx.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && conditionsCM != 2)
+            {
+                conditionsCM = 2;
+                modePlayer = Mode.kapal;
+                changeModeVfx.Play();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && conditionsCM != 3) 
+            {
+                conditionsCM = 3;
+                modePlayer = Mode.tamia;
+                changeModeVfx.Play();
+            }
         }
     }
     public void JumpPlayerInput(bool android)

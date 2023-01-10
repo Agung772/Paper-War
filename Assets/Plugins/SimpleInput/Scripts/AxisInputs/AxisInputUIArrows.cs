@@ -7,7 +7,6 @@ namespace SimpleInputNamespace
 
 	public class AxisInputUIArrows : MonoBehaviour, ISimpleInputDraggable
 	{
-		public static AxisInputUIArrows instance;
 
 		public SimpleInput.AxisInput xAxis = new SimpleInput.AxisInput( "Horizontal" );
 		public SimpleInput.AxisInput yAxis = new SimpleInput.AxisInput( "Vertical" );
@@ -28,7 +27,7 @@ namespace SimpleInputNamespace
 
 		private void Awake()
 		{
-			instance = this;
+
 
 			rectTransform = (RectTransform) transform;
 			gameObject.AddComponent<SimpleInputDragListener>().Listener = this;

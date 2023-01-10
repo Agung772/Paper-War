@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        VerticalInput(0);
         ChangeMode();
         BatasPlayer();
     }
@@ -92,7 +91,8 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         //verticalInput = Input.GetAxis("Vertical");
-
+        verticalInput = SimpleInput.GetAxis("Vertical");
+      
 
         movement = new Vector3(speedHorizontalPlayer, 0, verticalInput);
 
@@ -157,12 +157,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void VerticalInput(int condition)
-    {
-        if (condition == 0 && Input.GetAxis("Vertical") == 0) verticalInput = 0;
-        else if (condition == 1) verticalInput = -1;
-        else if (condition == 2) verticalInput = 1;
-
-        
-    }
 }

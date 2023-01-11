@@ -7,9 +7,13 @@ public class MainanJariController : MonoBehaviour
     public float speed, x;
     public Transform target;
 
+
+
     private void Start()
     {
         x = transform.position.x;
+
+
     }
 
     private void Update()
@@ -18,5 +22,9 @@ public class MainanJariController : MonoBehaviour
         //transform.position = new Vector3(x, transform.position.y, transform.position.z);
 
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+
+        //if (transform.position.y < 2.5f) transform.position = new Vector3(transform.position.x, 2.5f, transform.position.z);
+
     }
 }

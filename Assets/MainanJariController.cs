@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class MainanJariController : MonoBehaviour
 {
-    public float speed, x;
+    public float speed, akselerasi;
     public Transform target;
 
 
 
     private void Start()
     {
-        x = transform.position.x;
-
 
     }
 
     private void Update()
     {
-        x += speed * Time.deltaTime;
-        //transform.position = new Vector3(x, transform.position.y, transform.position.z);
+        Akselerasi();
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * akselerasi * Time.deltaTime);
 
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+    }
 
+    void Akselerasi()
+    {
+        akselerasi += Time.deltaTime / 7;
+        akselerasi = Mathf.Clamp(akselerasi, 0, 1);
+    }
 
-        //if (transform.position.y < 2.5f) transform.position = new Vector3(transform.position.x, 2.5f, transform.position.z);
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.LoseUI();
+            
+        }
     }
 }

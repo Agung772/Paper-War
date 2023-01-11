@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     public enum Mode
     {
         pesawat, kapal, tamia
@@ -17,17 +18,23 @@ public class PlayerController : MonoBehaviour
 
 
     public float speedPesawat, speedKapal, speedTamia;
-    public float speedVerticalPlayer, speedHorizontalPlayer;
+    public float speedVerticalPlayer, speedHorizontalPlayer, akselerasi;
     public float jumpForce, gravity = -9.81f;
 
 
     public Vector3 movement;
     public float horizontalInput, verticalInput, directionY;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Update()
     {
+        Akselerasi();
         ChangeMode();
         BatasPlayer();
+
     }
 
     void ChangeMode()
@@ -96,7 +103,7 @@ public class PlayerController : MonoBehaviour
         verticalInput = SimpleInput.GetAxis("Vertical");
       
 
-        movement = new Vector3(speedHorizontalPlayer, 0, verticalInput);
+        movement = new Vector3(speedHorizontalPlayer * akselerasi, 0, verticalInput);
 
         directionY += gravity * Time.deltaTime;
         movement.y = directionY;
@@ -104,6 +111,12 @@ public class PlayerController : MonoBehaviour
 
 
         characterController.Move(movement * speedVerticalPlayer * Time.deltaTime);
+    }
+
+    void Akselerasi()
+    {
+        akselerasi += Time.deltaTime / 5;
+        akselerasi = Mathf.Clamp(akselerasi, 0, 1);
     }
 
     void BatasPlayer()
@@ -179,6 +192,14 @@ public class PlayerController : MonoBehaviour
                 groundCheck.groundAir = false;
             }
         }
+    }
+
+    public void FalseMesh()
+    {
+        changeModeVfx.Play();
+        pesawat.SetActive(false);
+        kapal.SetActive(false);
+        tamia.SetActive(false);
     }
 
 }

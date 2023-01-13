@@ -7827,6 +7827,26 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 80becbc32f6c67740ade6d5502cd1813, type: 2}
+    - target: {fileID: 8879528566716807029, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 9044806412961212599, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

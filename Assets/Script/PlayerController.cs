@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
 
     public float speedPesawat, speedKapal, speedTamia;
-    public float speedVerticalPlayer, speedHorizontalPlayer, akselerasi;
+    public float speedVerticalPlayer, speedHorizontalPlayer, akselerasi, nerfSpeed = 1;
     public float jumpForce, gravity = -9.81f;
 
 
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         verticalInput = SimpleInput.GetAxis("Vertical");
       
 
-        movement = new Vector3(speedHorizontalPlayer * akselerasi, 0, verticalInput);
+        movement = new Vector3(speedHorizontalPlayer * akselerasi * nerfSpeed, 0, verticalInput);
 
         directionY += gravity * Time.deltaTime;
         movement.y = directionY;

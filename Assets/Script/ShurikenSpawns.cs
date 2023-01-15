@@ -47,7 +47,7 @@ public class ShurikenSpawns : MonoBehaviour
             shurikenObject.GetComponent<MeshRenderer>().enabled = true;
 
             Destroy(shurikenObject, 3);
-            Destroy(tandaObject, 1);
+            tandaObject.GetComponent<TandaShurikenController>().Exit();
         }
 
     }

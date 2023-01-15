@@ -548,13 +548,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1978533858}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: ChangeModeInput
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: tamia
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &255362061
@@ -1088,13 +1088,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1978533858}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: ChangeModeInput
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: kapal
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &517285048
@@ -1225,13 +1225,13 @@ MonoBehaviour:
       - m_Target: {fileID: 1978533858}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: ChangeModeInput
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: pesawat
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &606707117
@@ -7861,7 +7861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
       propertyPath: m_Layer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2639638324218457063, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7974,6 +7974,30 @@ PrefabInstance:
     - target: {fileID: 2096221262486713844, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_MotionVectors
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_RayTraceProcedural
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
+      propertyPath: m_SkinnedMotionVectors
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8417361359673230750, guid: 564d1ccb29337674ebea62d764cb17eb, type: 3}
       propertyPath: m_Materials.Array.data[0]

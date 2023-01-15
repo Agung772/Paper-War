@@ -8,12 +8,6 @@ public class MainanJariController : MonoBehaviour
     public Transform target;
 
 
-
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         Akselerasi();

@@ -23,23 +23,28 @@ public class PlayerController : MonoBehaviour
 
 
     public Vector3 movement;
-    public float horizontalInput, verticalInput, directionY;
+    public float horizontalInput, verticalInput, directionY, cooldownMode;
 
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        ChangeModeInput("tamia");
     }
     void Update()
     {
         Akselerasi();
         ChangeMode();
         BatasPlayer();
-
+        CooldownMode();
     }
 
     void ChangeMode()
     {
-        ChangeModeInput(0);
+        ChangeModeInput("pc");
 
         if (modePlayer == Mode.pesawat)
         {
@@ -90,13 +95,11 @@ public class PlayerController : MonoBehaviour
 
         verticalInput = SimpleInput.GetAxis("Vertical");
       
-
         movement = new Vector3(speedHorizontalPlayer * akselerasi * nerfSpeed, 0, verticalInput);
 
         directionY += gravity * Time.deltaTime;
         movement.y = directionY;
         if (groundCheck.groundDarat || groundCheck.groundAir) directionY = 0;
-
 
         characterController.Move(movement * speedVerticalPlayer * Time.deltaTime);
     }
@@ -117,14 +120,26 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 15, transform.position.z);
     }
 
+    void CooldownMode()
+    {
+        cooldownMode -= Time.deltaTime;
+        cooldownMode = Mathf.Clamp(cooldownMode, 0, 1);
+
+        GameManager.instance.CooldownImage(cooldownMode);
+    }
+
     void ModeInput(string mode)
     {
+        cooldownMode = 1;
+
         if (mode == "pesawat")
         {
             modePlayer = Mode.pesawat;
             pesawat.SetActive(true);
             kapal.SetActive(false);
             tamia.SetActive(false);
+
+            GameManager.instance.CloseJumpUI(false);
         }
         else if (mode == "kapal")
         {
@@ -132,6 +147,8 @@ public class PlayerController : MonoBehaviour
             pesawat.SetActive(false);
             kapal.SetActive(true);
             tamia.SetActive(false);
+
+            GameManager.instance.CloseJumpUI(true);
         }
         else if (mode == "tamia")
         {
@@ -139,49 +156,49 @@ public class PlayerController : MonoBehaviour
             pesawat.SetActive(false);
             kapal.SetActive(false);
             tamia.SetActive(true);
+
+            GameManager.instance.CloseJumpUI(true);
         }
+
+        changeModeVfx.Play();
     }
 
     int conditionsCM;
-    public void ChangeModeInput(int mode)
+    public void ChangeModeInput(string mode)
     {
-        if (mode == 1 && conditionsCM != 1)
+        if (cooldownMode > 0) return;
+
+        if (mode == "pesawat" && conditionsCM != 1)
         {
             conditionsCM = 1;
             ModeInput("pesawat");
-            changeModeVfx.Play();
         }
-        else if (mode == 2 && conditionsCM != 2)
+        else if (mode == "kapal" && conditionsCM != 2)
         {
             conditionsCM = 2;
             ModeInput("kapal");
-            changeModeVfx.Play();
         }
-        else if (mode == 3 && conditionsCM != 3)
+        else if (mode == "tamia" && conditionsCM != 3)
         {
             conditionsCM = 3;
             ModeInput("tamia");
-            changeModeVfx.Play();
         }
-        else if (mode == 0)
+        else if (mode == "pc")
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && conditionsCM != 1)
             {
                 conditionsCM = 1;
                 ModeInput("pesawat");
-                changeModeVfx.Play();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && conditionsCM != 2)
             {
                 conditionsCM = 2;
                 ModeInput("kapal");
-                changeModeVfx.Play();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3) && conditionsCM != 3) 
             {
                 conditionsCM = 3;
                 ModeInput("tamia");
-                changeModeVfx.Play();
             }
         }
     }

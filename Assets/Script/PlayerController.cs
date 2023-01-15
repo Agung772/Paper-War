@@ -43,10 +43,6 @@ public class PlayerController : MonoBehaviour
 
         if (modePlayer == Mode.pesawat)
         {
-            pesawat.SetActive(true);
-            kapal.SetActive(false);
-            tamia.SetActive(false);
-
             MovePlayer();
             JumpPlayerInput(false);
 
@@ -61,10 +57,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (modePlayer == Mode.kapal)
         {
-            pesawat.SetActive(false);
-            kapal.SetActive(true);
-            tamia.SetActive(false);
-
             MovePlayer();
 
             if (!groundCheck.groundDarat)
@@ -78,10 +70,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (modePlayer == Mode.tamia)
         {
-            pesawat.SetActive(false);
-            kapal.SetActive(false);
-            tamia.SetActive(true);
-
             MovePlayer();
 
             if (!groundCheck.groundAir)
@@ -99,7 +87,7 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        //verticalInput = Input.GetAxis("Vertical");
+
         verticalInput = SimpleInput.GetAxis("Vertical");
       
 
@@ -129,25 +117,50 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 15, transform.position.z);
     }
 
+    void ModeInput(string mode)
+    {
+        if (mode == "pesawat")
+        {
+            modePlayer = Mode.pesawat;
+            pesawat.SetActive(true);
+            kapal.SetActive(false);
+            tamia.SetActive(false);
+        }
+        else if (mode == "kapal")
+        {
+            modePlayer = Mode.kapal;
+            pesawat.SetActive(false);
+            kapal.SetActive(true);
+            tamia.SetActive(false);
+        }
+        else if (mode == "tamia")
+        {
+            modePlayer = Mode.tamia;
+            pesawat.SetActive(false);
+            kapal.SetActive(false);
+            tamia.SetActive(true);
+        }
+    }
+
     int conditionsCM;
     public void ChangeModeInput(int mode)
     {
         if (mode == 1 && conditionsCM != 1)
         {
             conditionsCM = 1;
-            modePlayer = Mode.pesawat;
+            ModeInput("pesawat");
             changeModeVfx.Play();
         }
         else if (mode == 2 && conditionsCM != 2)
         {
             conditionsCM = 2;
-            modePlayer = Mode.kapal;
+            ModeInput("kapal");
             changeModeVfx.Play();
         }
         else if (mode == 3 && conditionsCM != 3)
         {
             conditionsCM = 3;
-            modePlayer = Mode.tamia;
+            ModeInput("tamia");
             changeModeVfx.Play();
         }
         else if (mode == 0)
@@ -155,19 +168,19 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1) && conditionsCM != 1)
             {
                 conditionsCM = 1;
-                modePlayer = Mode.pesawat;
+                ModeInput("pesawat");
                 changeModeVfx.Play();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2) && conditionsCM != 2)
             {
                 conditionsCM = 2;
-                modePlayer = Mode.kapal;
+                ModeInput("kapal");
                 changeModeVfx.Play();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3) && conditionsCM != 3) 
             {
                 conditionsCM = 3;
-                modePlayer = Mode.tamia;
+                ModeInput("tamia");
                 changeModeVfx.Play();
             }
         }
@@ -200,6 +213,7 @@ public class PlayerController : MonoBehaviour
         pesawat.SetActive(false);
         kapal.SetActive(false);
         tamia.SetActive(false);
+        nerfSpeed = 0;
     }
 
 }

@@ -13,5 +13,10 @@ public class ShurikenController : MonoBehaviour
             rigidbody.isKinematic = true;
         }
 
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.LoseUI();
+        }
+
     }
 }

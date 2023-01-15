@@ -38,7 +38,7 @@ public class ShurikenSpawns : MonoBehaviour
             GameObject tandaObject = Instantiate(tandaShurikenPrefab, transform);
             tandaObject.transform.position = shurikenObject.transform.position + new Vector3(0, 0, 0);
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.7f);
 
             shurikenObject.GetComponent<Rigidbody>().AddForce(transform.forward * speedForce, ForceMode.Impulse);
             float randomSpeed = speedForce + Random.Range(-20, 20);
@@ -47,7 +47,7 @@ public class ShurikenSpawns : MonoBehaviour
             shurikenObject.GetComponent<MeshRenderer>().enabled = true;
 
             Destroy(shurikenObject, 3);
-            Destroy(tandaObject, 3);
+            Destroy(tandaObject, 1);
         }
 
     }

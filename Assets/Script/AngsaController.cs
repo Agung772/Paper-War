@@ -9,8 +9,10 @@ public class AngsaController : MonoBehaviour
     public Transform angsaTransform;
     public new Rigidbody rigidbody;
     public Animator animator;
+    public BoxCollider boxCollider;
     private void Start()
     {
+        transform.localPosition = new Vector3(0, 0, Random.Range(-3, 3));
         angsaTransform.localPosition = new Vector3 (angsaTransform.localPosition.x, -3, angsaTransform.localPosition.z);
     }
 
@@ -29,6 +31,7 @@ public class AngsaController : MonoBehaviour
             { 
                 move = true;
                 animator.SetTrigger("Exit");
+                boxCollider.enabled = true;
             
             }
         }
@@ -37,5 +40,14 @@ public class AngsaController : MonoBehaviour
             rigidbody.AddForce(Vector3.left * speedMove * 100 * Time.deltaTime);
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.instance.LoseUI();
+            print("Nabrak Angsa");
+        }
     }
 }

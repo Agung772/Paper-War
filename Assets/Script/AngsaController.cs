@@ -4,50 +4,23 @@ using UnityEngine;
 
 public class AngsaController : MonoBehaviour
 {
-    public bool move;
-    public float speedMove, speedSpawn;
-    public Transform angsaTransform;
-    public new Rigidbody rigidbody;
-    public Animator animator;
-    public BoxCollider boxCollider;
+    public bool angsaParent;
     private void Start()
     {
-        transform.localPosition = new Vector3(0, 0, Random.Range(-3, 3));
-        angsaTransform.localPosition = new Vector3 (angsaTransform.localPosition.x, -3, angsaTransform.localPosition.z);
-    }
-
-    private void Update()
-    {
-        Invoke("Move", 1);
-    }
-
-    void Move()
-    {
-        if (!move)
+        if (angsaParent)
         {
-            angsaTransform.localPosition = Vector3.MoveTowards(angsaTransform.localPosition, new Vector3(angsaTransform.localPosition.x, 0, angsaTransform.localPosition.z), speedSpawn * Time.deltaTime);
+            transform.localPosition = new Vector3(0, 0, Random.Range(-3, 3));
+            Destroy(gameObject.transform.parent.gameObject, 3.5f);
+        }
 
-            if (angsaTransform.localPosition.y == 0) 
-            { 
-                move = true;
-                animator.SetTrigger("Exit");
-                boxCollider.enabled = true;
-            
-            }
-        }
-        else
-        {
-            rigidbody.AddForce(Vector3.left * speedMove * 100 * Time.deltaTime);
-        }
-        
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !angsaParent)
         {
             GameManager.instance.LoseUI();
-            print("Nabrak Angsa");
         }
     }
 }

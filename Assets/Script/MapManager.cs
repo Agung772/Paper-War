@@ -13,7 +13,7 @@ public class MapManager : MonoBehaviour
     private void Start()
     {
         randomBool = new bool[maps.Length];
-        InvokeRepeating("RandomInt", 0, 2);
+        InvokeRepeating("RandomInt", 1, 2);
     }
     public void RandomInt()
     {
@@ -21,15 +21,22 @@ public class MapManager : MonoBehaviour
         print("Random : " + random);
         for (int i = 0; i < maps.Length; i++)
         {
-            if (random == i && !randomBool[i])
+            if (!randomBool[i])
             {
-                randomInt = i;
-                randomBool[i] = true;
+                if (random == i)
+                {
+                    randomInt = i;
+                    randomBool[i] = true;
 
-                print("Hasil : " + i);
-                break;
+                    print("Hasil : " + i);
+                    break;
+                }
+                else
+                {
+                    print("Gagal : " + i);
+                }
+
             }
-            else print("Gak ada");
         }
 
         randomCheck = 0;

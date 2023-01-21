@@ -1587,6 +1587,9 @@ MonoBehaviour:
   jumlahMap: 0
   positionXMap: 0
   positionXEnvi: 110
+  randomInt: 0
+  randomCheck: 1
+  randomBool: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7499,7 +7502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1527855482
 MonoBehaviour:
   m_ObjectHideFlags: 0

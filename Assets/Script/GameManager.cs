@@ -15,6 +15,14 @@ public class GameManager : MonoBehaviour
     public Button jumpButton;
     public Image jumpImage;
 
+    public int score;
+    public int Score
+    {
+        get { return score; }
+        set { score = value; scoreText.text = "Score : " + score; }
+    }
+    public Text scoreText;
+
     private void Awake()
     {
         Application.targetFrameRate = 60;

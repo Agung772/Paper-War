@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class KipasController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Animator animator;
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Start()
     {
-        
+        animator.enabled = false;
+        yield return new WaitForSeconds(Random.Range(0, 6));
+        animator.enabled = true;
     }
 }

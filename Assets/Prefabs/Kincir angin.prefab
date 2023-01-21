@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
-  nerf: 0.4
+  nerf: 0.3
 --- !u!1 &3875842372689731694
 GameObject:
   m_ObjectHideFlags: 0

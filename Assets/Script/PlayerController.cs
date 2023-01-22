@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
 
     public float speedPesawat, speedKapal, speedTamia;
+    public float energyPesawat;
     public float speedVerticalPlayer, speedHorizontalPlayer, akselerasi, nerfSpeed = 1;
     public float jumpForce, gravity = -9.81f;
 
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         ChangeMode();
         BatasPlayer();
         CooldownMode();
+        EnergyPesawat();
     }
 
     void ChangeMode()
@@ -50,6 +52,9 @@ public class PlayerController : MonoBehaviour
         {
             MovePlayer();
             JumpPlayerInput(false);
+
+
+            if (energyPesawat == 0) ChangeModeInput("tamia");
 
             if (!groundCheck.groundDarat && !groundCheck.groundAir)
             {
@@ -102,6 +107,15 @@ public class PlayerController : MonoBehaviour
         if (groundCheck.groundDarat || groundCheck.groundAir) directionY = 0;
 
         characterController.Move(movement * speedVerticalPlayer * Time.deltaTime);
+    }
+
+    void EnergyPesawat()
+    {
+        if (modePlayer == Mode.pesawat) energyPesawat -= Time.deltaTime / 5;
+        else energyPesawat += Time.deltaTime / 3;
+
+        energyPesawat = Mathf.Clamp(energyPesawat, 0, 1);
+        GameManager.instance.EnergyPesawatUI(energyPesawat);
     }
 
     void Akselerasi()

@@ -17,9 +17,9 @@ public class MapSpawns : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //mapManager.RandomInt();
+            mapManager.RandomInt();
 
-            GameObject map = Instantiate(mapManager.maps[Random.Range(0, mapManager.maps.Length)], transform.parent.transform.parent);
+            GameObject map = Instantiate(mapManager.maps[mapManager.randomInt], transform.parent.transform.parent);
             map.transform.localPosition = new Vector3(mapManager.positionXMap + Random.Range(110, 120) , Random.Range(0, 3), 0);
             mapManager.positionXMap += 70;
             mapManager.jumlahMap++;

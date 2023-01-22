@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public Button jumpButton;
     public Image jumpImage;
 
+    public Image energyPesawatImage;
+
     public int score;
     public int Score
     {
@@ -68,6 +70,11 @@ public class GameManager : MonoBehaviour
             jumpButton.interactable = true;
             jumpImage.gameObject.SetActive(false);
         }
+    }
+
+    public void EnergyPesawatUI(float value)
+    {
+        energyPesawatImage.fillAmount = value;
     }
 
     public void RestartGame()

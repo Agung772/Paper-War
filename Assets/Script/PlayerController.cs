@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    public bool playerOperation;
     public enum Mode
     {
         pesawat, kapal, tamia
@@ -34,9 +35,12 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         ChangeModeInput("tamia");
+        playerOperation = true;
     }
     void Update()
     {
+        if (!playerOperation) return;
+
         Akselerasi();
         ChangeMode();
         BatasPlayer();

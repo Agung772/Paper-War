@@ -42,7 +42,7 @@ public class ShurikenSpawns : MonoBehaviour
 
             shurikenObject.GetComponent<Rigidbody>().AddForce(transform.forward * speedForce, ForceMode.Impulse);
             float randomSpeed = speedForce + Random.Range(-20, 20);
-            print(randomSpeed);
+
             shurikenObject.GetComponent<Rigidbody>().angularVelocity = Vector3.forward * randomSpeed;
             shurikenObject.GetComponent<MeshRenderer>().enabled = true;
 

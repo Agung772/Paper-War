@@ -34,8 +34,9 @@ public class GameManager : MonoBehaviour
     public void LoseUI()
     {
         PlayerController.instance.FalseMesh();
+        PlayerController.instance.playerOperation = false;
         loseUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
 
     public void CooldownImage(float value)

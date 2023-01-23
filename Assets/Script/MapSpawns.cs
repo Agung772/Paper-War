@@ -38,7 +38,7 @@ public class MapSpawns : MonoBehaviour
             envi.transform.localPosition = new Vector3(mapManager.positionXEnvi, 0, 0);
             mapManager.positionXEnvi += 70;
 
-            GameManager.instance.Score++;
+            GameManager.instance.Score += 100;
         }
     }
 

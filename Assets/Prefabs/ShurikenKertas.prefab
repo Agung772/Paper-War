@@ -51,6 +51,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 276426836953592552}
   particleSystem: {fileID: 4427501622664117506}
+  trailRenderer: {fileID: 2828515872699842704}
+  percobaan: 0
+  durasiGeter: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.23582631
+      outSlope: 0.23582631
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.87968713
+    - serializedVersion: 3
+      time: 1
+      value: 0.21522671
+      inSlope: 0.6411527
+      outSlope: 0.6411527
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.059892774
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!33 &4553732442069903350
 MeshFilter:
   m_ObjectHideFlags: 0

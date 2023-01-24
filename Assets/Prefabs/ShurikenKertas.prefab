@@ -52,32 +52,7 @@ MonoBehaviour:
   rigidbody: {fileID: 276426836953592552}
   particleSystem: {fileID: 4427501622664117506}
   trailRenderer: {fileID: 2828515872699842704}
-  percobaan: 0
   durasiGeter: 1
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.23582631
-      outSlope: 0.23582631
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.87968713
-    - serializedVersion: 3
-      time: 1
-      value: 0.21522671
-      inSlope: 0.6411527
-      outSlope: 0.6411527
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.059892774
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!33 &4553732442069903350
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -324,8 +299,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 8
-      minScalar: 4
+      scalar: 10
+      minScalar: 6
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -378,7 +353,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5129,8 +5104,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0.016239643, a: 1}
-      key1: {r: 1, g: 0, b: 0.015686275, a: 0}
+      key0: {r: 0.98823535, g: 1, b: 1, a: 0.61960787}
+      key1: {r: 0.91372555, g: 0.9450981, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

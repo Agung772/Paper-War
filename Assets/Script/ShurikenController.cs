@@ -37,7 +37,7 @@ public class ShurikenController : MonoBehaviour
         while (elapsedTime <= durasiGeter)
         {
             elapsedTime += Time.deltaTime;
-            float strength = elapsedTime * 0.2f;
+            float strength = elapsedTime * 0.15f;
             transform.position = startPosition + Random.insideUnitSphere * strength;
             yield return null;
         }

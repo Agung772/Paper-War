@@ -7633,6 +7633,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1558735155}
   - component: {fileID: 1558735154}
+  - component: {fileID: 1558735156}
   m_Layer: 0
   m_Name: CutsceneStart
   m_TagString: Untagged
@@ -7673,6 +7674,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1558735156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558735153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8984b13cacadf8e44beb8beb3eb3370d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirector: {fileID: 1558735154}
+  gameplayUI: {fileID: 1473138400}
 --- !u!1 &1598356989
 GameObject:
   m_ObjectHideFlags: 0

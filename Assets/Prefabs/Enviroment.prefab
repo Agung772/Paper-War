@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3927,11 +3927,11 @@ ParticleSystem:
   TrailModule:
     enabled: 1
     mode: 0
-    ratio: 0.75
+    ratio: 1
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4066,13 +4066,13 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.70270264
-          inSlope: 1.3420397
-          outSlope: 1.3420397
+          value: 0
+          inSlope: 7.2630286
+          outSlope: 7.2630286
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.34685734
+          outWeight: 0.28535786
         - serializedVersion: 3
           time: 0.24385548
           value: 0.9731954
@@ -4907,7 +4907,6 @@ GameObject:
   - component: {fileID: 1724867545214965752}
   - component: {fileID: 1724867545214965755}
   - component: {fileID: 115980005031175951}
-  - component: {fileID: 6440540356246749000}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -4987,23 +4986,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724867545214965748}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 1.0000002, z: 6.123235e-17}
   m_Center: {x: -0.000000022351742, y: 0, z: 0}
---- !u!114 &6440540356246749000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724867545214965748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b61f5427712d4468684c5d5b392f35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1724867545580200002
 GameObject:
   m_ObjectHideFlags: 0

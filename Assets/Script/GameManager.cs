@@ -23,12 +23,13 @@ public class GameManager : MonoBehaviour
         get { return score; }
         set { score = value; scoreText.text = "Score : " + score; }
     }
-    public Text scoreText;
+    public Text scoreText, fpsText;
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
         instance = this;
+
     }
 
     public void LoseUI()
@@ -76,6 +77,11 @@ public class GameManager : MonoBehaviour
     public void EnergyPesawatUI(float value)
     {
         energyPesawatImage.fillAmount = value;
+    }
+
+    public void Fps(float value)
+    {
+        fpsText.text = value.ToString("F0");
     }
 
     public void RestartGame()

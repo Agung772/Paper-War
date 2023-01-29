@@ -46,8 +46,12 @@ public class PlayerController : MonoBehaviour
         BatasPlayer();
         CooldownMode();
         EnergyPesawat();
-    }
 
+        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+        float fps = 1.0f / deltaTime;
+        GameManager.instance.Fps(fps);
+    }
+    float deltaTime;
     void ChangeMode()
     {
         ChangeModeInput("pc");

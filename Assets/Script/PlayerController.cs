@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         Akselerasi();
         ChangeMode();
         BatasPlayer();
-        CooldownMode();
+        CooldownMode(); 
         EnergyPesawat();
 
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;

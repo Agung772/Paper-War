@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4508323515460798198}
   m_Layer: 0
   m_Name: NonGround (13)
-  m_TagString: GroundDarat
+  m_TagString: GroundAir
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
